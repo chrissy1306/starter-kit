@@ -1,0 +1,41 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify -t [ babelify ] ./components/app.js -o ./public/index.js",
+    "start": "npm run build & node server.js",
+    "test": "mocha --compilers js:babel-core/register ./test/*.spec.js --reporter spec",
+    "test:watch": "npm run test -- --watch",
+    "watch": "npm run watch:server & npm run watch:bundle & wait",
+    "watch:server": "nodemon --exec babel-node --ignore ./public/index.js -- server.js",
+    "watch:bundle": "watchify ./components/app.js -v -t babelify -g envify -p livereactload -o ./public/index.js"
+  },
+  "author": "Chrissy Pocock",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-register": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "chai": "^3.5.0",
+    "envify": "^3.4.1",
+    "express": "^4.14.0",
+    "jsdom": "^9.4.1",
+    "livereactload": "^2.2.4",
+    "mocha": "^2.5.3",
+    "nodemon": "^1.9.2",
+    "react-addons-test-utils": "^15.2.1",
+    "react-proxy": "^1.1.8",
+    "watchify": "^3.7.0"
+  }
+}
